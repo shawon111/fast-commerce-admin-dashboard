@@ -1,0 +1,29 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* variables */
+:root {
+  --brandOne: #FD8D27;
+  --brandTwo: #103178;
+}
+
+/* utility classes */
+.brandOne-text {
+  color: var(--brandOne);
+}
+.brandTwo-text {
+  color: var(--brandTwo);
+}
+.brandOne-border {
+  border-color: var(--brandOne) !important;
+}
+.brandTwo-border {
+  border-color: var(--brandTwo) !important;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
