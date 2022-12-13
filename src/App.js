@@ -16,6 +16,7 @@ import SingleBlog from './Pages/SingleBlog';
 import SingleCustomer from './Pages/SingleCustomer';
 import SingleOrder from './Pages/SingleOrder';
 import SingleProduct from './Pages/SingleProduct';
+import Users from './Pages/Users';
 
 function App() {
   return (
@@ -23,18 +24,19 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Dashboard />}>
-            <Route index elemrnt={<Home />} />
-            <Route path="customers" elemrnt={<Customers />} />
-            <Route path="orders" elemrnt={<Orders />} />
-            <Route path="orders/:id" elemrnt={<SingleOrder />} />
-            <Route path="customers/:id" elemrnt={<SingleCustomer />} />
-            <Route path="blogs" elemrnt={<Blogs />} />
-            <Route path="blogs/:id" elemrnt={<SingleBlog />} />
-            <Route path="products" elemrnt={<Products />} />
-            <Route path="products/:id" elemrnt={<SingleProduct />} />
-            <Route path="add-product" elemrnt={<AddProduct />} />
-            <Route path="add-blog" elemrnt={<AddBlog/>} />
-            <Route path="add-user" elemrnt={<AddUser/>} />
+            <Route index element={<Home />} />
+            <Route path="customers" element={<Customers />} />
+            <Route path="orders" element={<Orders />} />
+            <Route path="orders/:id" element={<SingleOrder />} />
+            <Route path="customers/:id" element={<SingleCustomer />} />
+            <Route path="blogs" element={<Blogs />} />
+            <Route path="blogs/:id" element={<SingleBlog />} />
+            <Route path="products" element={<Products />} />
+            <Route path="products/:id" element={<SingleProduct />} />
+            <Route path="add-product" element={<AddProduct />} />
+            <Route path="add-blog" element={<AddBlog/>} />
+            <Route path="users" element={<Users/>} />
+            <Route path="add-user" element={<AddUser/>} />
           </Route>
           <Route path="*" element={<PageNotFound />} />
           <Route path="/login" element={<Login />} />

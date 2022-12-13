@@ -3,7 +3,7 @@ import { Col, Row } from 'react-bootstrap';
 import Header from './Header';
 import Sidebar from './Sidebar';
 
-const Layout = ({children}) => {
+const Layout = ({ children }) => {
     return (
         <div>
             <Header />
@@ -12,7 +12,9 @@ const Layout = ({children}) => {
                     <Sidebar />
                 </Col>
                 <Col xs={12} md={8} xl={10}>
-                    {children}
+                    <div className='dashboard-contents p-5'>
+                        {children}
+                    </div>
                 </Col>
             </Row>
         </div>

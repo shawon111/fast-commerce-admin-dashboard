@@ -16,7 +16,7 @@ const Header = () => {
                             <img className='w-75 h-75 cursor-pointer' src={Logo} alt="logo" />
                         </div>
                         <div>
-                            <BiMenu className='fs-4 brandTwo-text border border-3 brandTwo-border cursor-pointer' />
+                            <BiMenu className='fs-4 brandTwo-text border border-3 brandTwo-border cursor-pointer me-1' />
                         </div>
                     </div>
                 </Col>
@@ -27,7 +27,7 @@ const Header = () => {
                         <div className='ms-5'>
                             <div class="input-group">
                                 <input type="text" class="form-control brandTwo-border" aria-describedby="button-addon2" />
-                                <button class="btn brandTwo-border" type="button" id="button-addon2">Search</button>
+                                <button class="btn brandTwo-border brandTwo-bg text-light brandTwo-text-hover" type="button" id="button-addon2">Search</button>
                             </div>
                         </div>
                         <div style={{
