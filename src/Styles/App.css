@@ -45,6 +45,23 @@
   color: var(--brandTwo) !important
 }
 
+.brandTwo-btn{
+  background-color: var(--brandTwo);
+  transition: all .3s;
+}
+.brandOne-btn{
+  background-color: var(--brandOne);
+  transition: all .3s;
+}
+.brandTwo-btn:hover {
+  background-color: #fff;
+  color: var(--brandTwo);
+}
+.brandOne-btn:hover {
+  background-color: #fff;
+  color: var(--brandOne);
+}
+
 /* react router dom active style */
 .active{
   color: #fff;
@@ -55,6 +72,9 @@
 
 .admin-sidebar{
   width: fit-content;
+  position: sticky;
+  top: 85px;
+  left: 0
 }
 .sidebar-link {
   border-top-right-radius: 8px;
@@ -70,6 +90,15 @@
   background-color: #F0F2F5;
   max-width: 98%;
   border-radius: 20px;
+}
+
+/* header */
+.sticky-header{
+  /* position:fixed;
+  top: 0px;
+  left: 0;
+  width: 100%;
+  margin-bottom: 85px */
 }
 
 /* home */

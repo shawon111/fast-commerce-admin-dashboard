@@ -6,7 +6,7 @@ import ProfileImg from '../../Static/Images/profile.png';
 
 const Header = () => {
     return (
-        <div className='px-3 py-4'>
+        <div className='px-3 py-4 sticky-header'>
             <Row className='align-items-center'>
 
                 {/* logo and menu toogle icon */}
@@ -25,9 +25,9 @@ const Header = () => {
                 <Col className="d-none d-md-block" xs={0} md={8} xl={10}>
                     <div className='d-flex align-items-center justify-content-between'>
                         <div className='ms-5'>
-                            <div class="input-group">
-                                <input type="text" class="form-control brandTwo-border" aria-describedby="button-addon2" />
-                                <button class="btn brandTwo-border brandTwo-bg text-light brandTwo-text-hover" type="button" id="button-addon2">Search</button>
+                            <div className="input-group">
+                                <input type="text" className="form-control brandTwo-border" aria-describedby="button-addon2" />
+                                <button className="btn brandTwo-border brandTwo-bg text-light brandTwo-text-hover" type="button" id="button-addon2">Search</button>
                             </div>
                         </div>
                         <div style={{
