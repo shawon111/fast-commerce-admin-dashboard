@@ -49,12 +49,21 @@
   background-color: var(--brandTwo);
   transition: all .3s;
 }
+
+.brandTwo-btn a{
+  color: #fff;
+  text-decoration: none;
+}
+
 .brandOne-btn{
   background-color: var(--brandOne);
   transition: all .3s;
 }
 .brandTwo-btn:hover {
   background-color: #fff;
+  color: var(--brandTwo);
+}
+.brandTwo-btn:hover a {
   color: var(--brandTwo);
 }
 .brandOne-btn:hover {
