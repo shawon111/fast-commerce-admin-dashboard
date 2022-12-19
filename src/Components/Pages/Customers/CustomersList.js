@@ -6,7 +6,7 @@ const CustomersList = () => {
     const [customers, setCustomers] = useState([]);
 
     const getCustomersList = () => {
-        fetch('http://localhost:5000/customers')
+        fetch('https://fast-commerce-backend.onrender.com/customers')
             .then(res => res.json())
             .then(data => setCustomers(data))
     }
@@ -17,7 +17,7 @@ const CustomersList = () => {
 
     // delete customer
     const handleDeleteCustomer = (id) =>{
-        fetch(`http://localhost:5000/customer/${id}`, {
+        fetch(`https://fast-commerce-backend.onrender.com/customer/${id}`, {
             method: "DELETE"
         })
         .then(res=> res.json())

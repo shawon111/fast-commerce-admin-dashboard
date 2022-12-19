@@ -11,13 +11,13 @@ const SingleCustomer = () => {
     }, [])
 
     const getCustomerData = () => {
-        fetch(`http://localhost:5000/customers/${id}`)
+        fetch(`https://fast-commerce-backend.onrender.com/customers/${id}`)
             .then(res => res.json())
             .then(data => setCustomerData(data))
     }
 
     const handleDeleteCustomer = (id) =>{
-        fetch(`http://localhost:5000/customer/${id}`, {
+        fetch(`https://fast-commerce-backend.onrender.com/customer/${id}`, {
             method: "DELETE"
         })
         .then(res=> res.json())
