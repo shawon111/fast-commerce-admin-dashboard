@@ -108,7 +108,6 @@ const ProductEditForm = () => {
                 setStock(data.stock)
                 createFeaturesList(data.features)
                 creaAdditionalInfoList(data.additionalInfo)
-                console.log(data)
             })
     }
 
