@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Table } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const ProductList = () => {
     const [products, setProducts] = useState([]);
@@ -29,7 +30,9 @@ const ProductList = () => {
                             <td>{product.name}</td>
                             <td>${product.price}</td>
                             <td>{product.availableStock}</td>
-                            <td><Button className='me-2 brandTwo-btn border-0 rounded-2'>Edit</Button>
+                            <td><Button className='me-2 brandTwo-btn border-0 rounded-2'>
+                                <Link to={`/products/${product._id}`}>Edit</Link>
+                            </Button>
                                 <Button className='brandOne-btn border-0 rounded-2'>Delete</Button>
                             </td>
                         </tr>)
