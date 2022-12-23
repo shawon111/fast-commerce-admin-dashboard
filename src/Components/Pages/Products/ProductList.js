@@ -11,6 +11,16 @@ const ProductList = () => {
         .then(res=> res.json())
         .then(data=> setProducts(data))
     }, [])
+
+    // handle delete button
+    const deleteProduct = (id) => {
+        fetch(`http://localhost:5000/product/${id}`, {method: "DELETE"})
+        .then(res=> {
+            const updatedProducts = products.filter(product=> product._id !== id);
+            setProducts(updatedProducts)
+        })
+    }
+
     return (
         <div>
             <Table striped bordered hover>
@@ -33,7 +43,7 @@ const ProductList = () => {
                             <td><Button className='me-2 brandTwo-btn border-0 rounded-2'>
                                 <Link to={`/products/${product._id}`}>Edit</Link>
                             </Button>
-                                <Button className='brandOne-btn border-0 rounded-2'>Delete</Button>
+                                <Button className='brandOne-btn border-0 rounded-2' onClick={()=> deleteProduct(product._id)}>Delete</Button>
                             </td>
                         </tr>)
                     }
