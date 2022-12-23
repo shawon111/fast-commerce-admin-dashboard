@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 const axios = require('axios');
@@ -6,23 +6,19 @@ const axios = require('axios');
 const ProductEditForm = () => {
 
     const { id } = useParams();
-    const [productData, setProductData] = useState({})
-    const [additionalInfoList, setAdditionalInfoList] = useState([])
-    const [featuresList, setFeaturesList] = useState([])
-
-
-    // refs
-    const additionalOne = useRef();
-    const additionalTwo = useRef();
-    const additionalThree = useRef();
-    const sizeOne = useRef();
-    const sizeTwo = useRef();
-    const sizeThree = useRef();
-    const featureOne = useRef();
-    const featureTwo = useRef();
-    const featureThree = useRef();
 
     // states
+    const [productData, setProductData] = useState({})
+    
+    const [additionalOne, setAdditionalOne] = useState();
+    const [additionalTwo, setAdditionalTwo] = useState();
+    const [additionalThree, setAdditionalThree] = useState();
+    const [sizeOne, setSizeOne] = useState();
+    const [sizeTwo, setSizeTwo] = useState();
+    const [sizeThree, setSizeThree] = useState();
+    const [featureOne, setFeatureOne] = useState();
+    const [featureTwo, setFeatureTwo] = useState();
+    const [featureThree, setFeatureThree] = useState();
     const [name, setName] = useState("")
     const [desc, setDesc] = useState("")
     const [metaDescription, setMetaDescription] = useState([])
@@ -39,58 +35,83 @@ const ProductEditForm = () => {
     const handleAddProduct = (e) => {
         e.preventDefault();
 
-        const product = new FormData();
+        const UpdatedProductData = {
+            product_name: name,
+            product_desc: desc,
+            additionalInfo: [
+                additionalOne,
+                additionalTwo,
+                additionalThree,
+            ],
+            sku: sku,
+            features: [
+                featureOne,
+                featureTwo,
+                featureThree
+            ],
+            brand: brand,
+            stock: stock,
+            metaTags: tags,
+            metaDescription: metaDescription,
+            metaTitle: metaTitle,
+            category: category,
+            price: price
+        }
 
-        product.append('product_name', name)
-        product.append('product_desc', desc)
-        product.append('additionalInfo', [
-            additionalOne.current.value,
-            additionalTwo.current.value,
-            additionalThree.current.value,
-        ])
-        product.append('sizes', [
-            sizeOne.current.checked,
-            sizeTwo.current.checked,
-            sizeThree.current.checked
-        ])
-        product.append('sku', sku)
-        product.append('features', [
-            featureOne.current.value,
-            featureTwo.current.value,
-            featureThree.current.value
-        ])
-        product.append('brand', brand)
-        product.append('stock', stock)
-        product.append('metaTags', tags)
-        product.append('metaDescription', metaDescription)
-        product.append('metaTitle', metaTitle)
-        product.append('category', category)
-        product.append('price', price)
+        // const product = new FormData();
+
+        // product.append('product_name', name)
+        // product.append('product_desc', desc)
+        // product.append('additionalInfo', [
+        //     additionalOne.current.value,
+        //     additionalTwo.current.value,
+        //     additionalThree.current.value,
+        // ])
+        // product.append('sizes', [
+        //     sizeOne.current.checked,
+        //     sizeTwo.current.checked,
+        //     sizeThree.current.checked
+        // ])
+        // product.append('sku', sku)
+        // product.append('features', [
+        //     featureOne.current.value,
+        //     featureTwo.current.value,
+        //     featureThree.current.value
+        // ])
+        // product.append('brand', brand)
+        // product.append('stock', stock)
+        // product.append('metaTags', tags)
+        // product.append('metaDescription', metaDescription)
+        // product.append('metaTitle', metaTitle)
+        // product.append('category', category)
+        // product.append('price', price)
         // product.append('featuredImage', featuredImage)
         // for (let i = 0; i <= galleryImages.length; i++) {
         //     product.append('gallaryImages', galleryImages[i])
         // }
-
-        axios.put("http://localhost:5000/addproduct", product)
+        axios.put(`http://localhost:5000/product/${id}`, UpdatedProductData)
             .then(res => console.log(res))
             .catch(err => console.log(err.response.data))
-
     }
 
     useEffect(() => {
         loadProductData()
     }, [])
 
-    const createFeaturesList = (features) => {
-        const makeArrayOfFeatures = features.split(",");
-        setFeaturesList(makeArrayOfFeatures);
+    const handleFeaturesList = (features) => {
+        // const makeArrayOfFeatures = features.split(",");
+        setFeatureOne(features[0]);
+        setFeatureTwo(features[1]);
+        setFeatureThree(features[2]);
     }
 
-    const creaAdditionalInfoList = (info) => {
-        const makeArrayOfInfo = info.split(".,");
-        setAdditionalInfoList(makeArrayOfInfo);
+    const handleAdditionalInfo = (info) => {
+        // const makeArrayOfInfo = info.split(".,");
+        setAdditionalOne(info[0]);
+        setAdditionalTwo(info[1]);
+        setAdditionalThree(info[2]);
     }
-// console.log("checking ref", additionalOne.current.value)
+    // console.log("checking ref", additionalOne.current.value)
     const loadProductData = () => {
         fetch(`https://fast-commerce-backend.onrender.com/products/${id}`)
             .then(res => res.json())
@@ -106,8 +127,8 @@ const ProductEditForm = () => {
                 setPrice(data.price)
                 setSku(data.sku)
                 setStock(data.stock)
-                createFeaturesList(data.features)
-                creaAdditionalInfoList(data.additionalInfo)
+                handleFeaturesList(data.features)
+                handleAdditionalInfo(data.additionalInfo)
             })
     }
 
@@ -124,23 +145,23 @@ const ProductEditForm = () => {
                 </div>
                 <div className="py-4">
                     <h2 className="overflow-hidden brandTwo-text fs-3 fw-semibold text-capitalize pb-2">additional info: </h2>
-                    <input className="form-control" type="text" ref={additionalOne} placeholder='additional info' defaultValue={additionalInfoList[0]}/>
+                    <input className="form-control" type="text" onChange={(e) => setAdditionalOne(e.target.value)} placeholder='additional info' defaultValue={additionalOne} />
                     <br />
-                    <input className="form-control" type="text" ref={additionalTwo} placeholder='additional info' defaultValue={additionalInfoList[1]} />
+                    <input className="form-control" type="text" onChange={(e) => setAdditionalTwo(e.target.value)} placeholder='additional info' defaultValue={additionalTwo} />
                     <br />
-                    <input className="form-control" type="text" ref={additionalThree} placeholder='additional info' defaultValue={additionalInfoList[2]} />
+                    <input className="form-control" type="text" onChange={(e) => setAdditionalThree(e.target.value)} placeholder='additional info' defaultValue={additionalThree} />
                 </div>
-                <div className="py-4">
+                {/* <div className="py-4">
                     <h2 className="overflow-hidden brandTwo-text fs-3 fw-semibold text-capitalize pb-2">Sizes</h2>
-                    <input className="" type="checkbox" ref={sizeOne} id="small" value="small" />
+                    <input className="" type="checkbox" onChange={(e) => setSizeOne(e.target.value)} id="small" value="small" />
                     <label htmlFor="small"> Small</label>
                     <br />
-                    <input className="" type="checkbox" ref={sizeTwo} id="medium" value="medium" />
+                    <input className="" type="checkbox" onChange={(e) => setSizeTwo(e.target.value)} id="medium" value="medium" />
                     <label htmlFor="medium"> medium</label>
                     <br />
-                    <input className="" type="checkbox" ref={sizeThree} id="large" value="large" />
+                    <input className="" type="checkbox" onChange={(e) => setSizeThree(e.target.value)} id="large" value="large" />
                     <label htmlFor="large"> large</label>
-                </div>
+                </div> */}
 
                 <div className="py-4">
                     <h2 className="overflow-hidden brandTwo-text fs-3 fw-semibold text-capitalize pb-2">SKU</h2>
@@ -149,11 +170,11 @@ const ProductEditForm = () => {
 
                 <div className="py-4">
                     <h2 className="overflow-hidden brandTwo-text fs-3 fw-semibold text-capitalize pb-2">Features</h2>
-                    <input className="form-control" type="text" placeholder='Feature1' ref={featureOne} defaultValue={featuresList[0]} />
+                    <input className="form-control" type="text" placeholder='Feature1' onChange={(e)=> setFeatureOne(e.target.value)} defaultValue={featureOne} />
                     <br />
-                    <input className="form-control" type="text" placeholder='Feature2' ref={featureTwo} defaultValue={featuresList[1]} />
+                    <input className="form-control" type="text" placeholder='Feature2' onChange={(e)=> setFeatureTwo(e.target.value)} defaultValue={featureTwo} />
                     <br />
-                    <input className="form-control" type="text" placeholder='Feature3' ref={featureThree} defaultValue={featuresList[2]} />
+                    <input className="form-control" type="text" placeholder='Feature3' onChange={(e)=> setFeatureThree(e.target.value)} defaultValue={featureThree} />
                 </div>
 
                 <div className="py-4">
