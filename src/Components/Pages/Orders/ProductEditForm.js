@@ -89,7 +89,7 @@ const ProductEditForm = () => {
         // for (let i = 0; i <= galleryImages.length; i++) {
         //     product.append('gallaryImages', galleryImages[i])
         // }
-        axios.put(`http://localhost:5000/product/${id}`, UpdatedProductData)
+        axios.put(`https://fast-commerce-backend.onrender.com/product/${id}`, UpdatedProductData)
             .then(res => console.log(res))
             .catch(err => console.log(err.response.data))
     }
@@ -99,17 +99,17 @@ const ProductEditForm = () => {
     }, [])
 
     const handleFeaturesList = (features) => {
-        // const makeArrayOfFeatures = features.split(",");
-        setFeatureOne(features[0]);
-        setFeatureTwo(features[1]);
-        setFeatureThree(features[2]);
+        const makeArrayOfFeatures = features.split(",");
+        setFeatureOne(makeArrayOfFeatures[0]);
+        setFeatureTwo(makeArrayOfFeatures[1]);
+        setFeatureThree(makeArrayOfFeatures[2]);
     }
 
     const handleAdditionalInfo = (info) => {
-        // const makeArrayOfInfo = info.split(".,");
-        setAdditionalOne(info[0]);
-        setAdditionalTwo(info[1]);
-        setAdditionalThree(info[2]);
+        const makeArrayOfInfo = info.split(".,");
+        setAdditionalOne(makeArrayOfInfo[0]);
+        setAdditionalTwo(makeArrayOfInfo[1]);
+        setAdditionalThree(makeArrayOfInfo[2]);
     }
     // console.log("checking ref", additionalOne.current.value)
     const loadProductData = () => {
@@ -188,11 +188,13 @@ const ProductEditForm = () => {
                 </div>
 
                 <div className="py-4">
-                    <h2 className="overflow-hidden brandTwo-text fs-3 fw-semibold text-capitalize pb-2">Meta info</h2>
+                    <h2 className="overflow-hidden brandTwo-text fs-3 fw-semibold text-capitalize pb-2">Meta Title</h2>
                     <input className="form-control" type="text" placeholder='meta title' onChange={(e) => setMetaTitle(e.target.value)} defaultValue={productData.metaTitle} />
                     <br />
+                    <h2 className="overflow-hidden brandTwo-text fs-3 fw-semibold text-capitalize pb-2">Meta Description</h2>
                     <textarea className="form-control" type="text" placeholder='meta description' rows="10" cols="50" onChange={(e) => setMetaDescription(e.target.value)} defaultValue={productData.metaDescription} />
                     <br />
+                    <h2 className="overflow-hidden brandTwo-text fs-3 fw-semibold text-capitalize pb-2">Meta Tags</h2>
                     <input className="form-control" type="text" onChange={(e) => setTags(e.target.value)} placeholder='add tags and separate with comma' defaultValue={productData.metaTags} />
                 </div>
 

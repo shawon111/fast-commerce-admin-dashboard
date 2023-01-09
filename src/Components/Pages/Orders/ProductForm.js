@@ -66,7 +66,7 @@ const ProductForm = () => {
             product.append('gallaryImages', galleryImages[i])
         }
 
-        axios.post("http://localhost:5000/addproduct", product)
+        axios.post("https://fast-commerce-backend.onrender.com/addproduct", product)
             .then(res => console.log(res))
             .catch(err => console.log(err.response.data))
 

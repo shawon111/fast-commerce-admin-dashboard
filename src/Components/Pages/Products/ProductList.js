@@ -14,7 +14,7 @@ const ProductList = () => {
 
     // handle delete button
     const deleteProduct = (id) => {
-        fetch(`http://localhost:5000/product/${id}`, {method: "DELETE"})
+        fetch(`https://fast-commerce-backend.onrender.com/product/${id}`, {method: "DELETE"})
         .then(res=> {
             const updatedProducts = products.filter(product=> product._id !== id);
             setProducts(updatedProducts)
